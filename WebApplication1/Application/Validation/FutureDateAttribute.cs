@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
+//Class responsible for custom validation to check if the task is not created with a past date, applicable only to tasks being created.
 namespace WebApplication1.Application.Validation
 {
     public class FutureDateAttribute(Type? appliesToType = null) : ValidationAttribute

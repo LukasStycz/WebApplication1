@@ -8,6 +8,7 @@ using WebApplication1.Domain.Logic;
 using WebApplication1.Domain.Models;
 using WebApplication1.Mappings;
 
+// Initial application setup 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,13 +18,13 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<ToDoRepository>();
 builder.Services.AddScoped<ToDoUtilities>();
 var app = builder.Build();
+
 using (var scope = app.Services.CreateScope())
 {
      var dbContext = scope.ServiceProvider.GetRequiredService<ToDoDbContext>();
      dbContext.Seed();
 }
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -33,6 +34,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 #region Post
+
 app.MapPost("/ToDo/Create", async (ToDoRepository repository, ToDoUtilities utilities, CreateToDoDto createToDoDto, IMapper mapper) =>
 {
     try
@@ -55,8 +57,14 @@ app.MapPost("/ToDo/Create", async (ToDoRepository repository, ToDoUtilities util
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
 #endregion
+
+
+
+
 #region Put
+
 app.MapPut("/ToDo/Update", async (ToDoRepository repository, ToDoUtilities utilities, UpdateTodoDto updateToDoDto, IMapper mapper) =>
 {
     try
@@ -86,6 +94,8 @@ app.MapPut("/ToDo/Update", async (ToDoRepository repository, ToDoUtilities utili
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
+
 app.MapPut("/ToDo/Update/Percentage", async (ToDoRepository repository, ToDoUtilities utilities, UpdateTodoDto updateToDoDto, IMapper mapper) =>
 {
     try
@@ -115,6 +125,8 @@ app.MapPut("/ToDo/Update/Percentage", async (ToDoRepository repository, ToDoUtil
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
+
 app.MapPut("/ToDo/Update/Done", async (ToDoRepository repository, ToDoUtilities utilities, UpdateTodoDto updateToDoDto, IMapper mapper) =>
 {
     try
@@ -144,8 +156,14 @@ app.MapPut("/ToDo/Update/Done", async (ToDoRepository repository, ToDoUtilities 
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
 #endregion
+
+
+
+
 #region Get
+
 app.MapGet("/ToDo/Get", async (ToDoRepository repository) =>
 {
     try
@@ -159,6 +177,8 @@ app.MapGet("/ToDo/Get", async (ToDoRepository repository) =>
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
+
 app.MapGet("/ToDo/Get/{id:int}", async (int id, ToDoRepository repository) =>
 {
     try
@@ -172,6 +192,8 @@ app.MapGet("/ToDo/Get/{id:int}", async (int id, ToDoRepository repository) =>
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
+
 app.MapGet("/ToDo/Get/Title/{title}", async (string title, ToDoRepository repository) =>
 {
     try
@@ -185,6 +207,8 @@ app.MapGet("/ToDo/Get/Title/{title}", async (string title, ToDoRepository reposi
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
+
 app.MapGet("/ToDo/Get/Date/OneDay/{date}", async (string date, ToDoRepository repository, ToDoUtilities utilities) =>
 {
     try
@@ -207,6 +231,8 @@ app.MapGet("/ToDo/Get/Date/OneDay/{date}", async (string date, ToDoRepository re
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
+
 app.MapGet("/ToDo/Get/Date/Week/{date}", async (string date, ToDoRepository repository, ToDoUtilities utilities) =>
 {
     try
@@ -230,8 +256,14 @@ app.MapGet("/ToDo/Get/Date/Week/{date}", async (string date, ToDoRepository repo
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
 #endregion
+
+
+
+
 #region Delete
+
 app.MapDelete("/ToDo/Delete/{id:int}", async (int id, ToDoRepository repository) =>
 {
     try
@@ -245,5 +277,10 @@ app.MapDelete("/ToDo/Delete/{id:int}", async (int id, ToDoRepository repository)
         return Results.Problem(ToDoConstantValues.UnexpectedError, statusCode: 500);
     }
 });
+
 #endregion
+
+
+
+
 app.Run();

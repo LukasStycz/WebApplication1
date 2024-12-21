@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
+//Class containing the business logic.
 namespace WebApplication1.Domain.Logic
 {
     public class ToDoUtilities
@@ -19,6 +16,7 @@ namespace WebApplication1.Domain.Logic
                 throw;
             }
         }
+
         public Tuple<DateTime,DateTime> GetStartandEndOfWeek(DateTime date)
         {
             try
@@ -32,6 +30,7 @@ namespace WebApplication1.Domain.Logic
                 throw;
             }
         }
+
         public List<ValidationResult> ValidateToDoTask(object ToDoTaskDto)
         {
             try
@@ -44,6 +43,7 @@ namespace WebApplication1.Domain.Logic
             {
                 throw;
             }
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 
-
+//Class containing constant values used in the application.
 namespace WebApplication1.Application.Constants
 {
     public class ToDoConstantValues

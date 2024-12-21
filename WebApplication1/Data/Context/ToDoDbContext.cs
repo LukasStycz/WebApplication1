@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Domain.Models;
 
+//Class responsible for managing the database, in this case also used for seeding initial data.
 namespace WebApplication1.Data.Context
 {
     public class ToDoDbContext(DbContextOptions<ToDoDbContext> options) : DbContext(options)
@@ -8,7 +9,7 @@ namespace WebApplication1.Data.Context
         public DbSet<ToDo>? ToDos { get; set; }
         public void Seed()
         {
-            if (!ToDos!.Any()) // Sprawdzamy, czy istnieją rekordy w tabeli ToDos
+            if (!ToDos!.Any()) 
             {
                 ToDos!.AddRange(
                     new ToDo
@@ -36,7 +37,7 @@ namespace WebApplication1.Data.Context
                         CompletionPercentage = 30
                     }
                 );
-                SaveChanges(); // Zapisujemy zmiany do bazy danych
+                SaveChanges(); 
             }
         }
     }
