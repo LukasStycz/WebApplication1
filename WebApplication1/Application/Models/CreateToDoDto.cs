@@ -1,8 +1,7 @@
-
-
 using System.ComponentModel.DataAnnotations;
 using WebApplication1.Application.Validation;
 
+//Class that holds incoming data and is also responsible for validating the data.
 namespace WebApplication1.Application.Models
 {
     public class CreateToDoDto

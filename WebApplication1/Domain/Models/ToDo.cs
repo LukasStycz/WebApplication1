@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+// Class representing a table in the database.
 namespace WebApplication1.Domain.Models
 {
     [Index(nameof(Title))]

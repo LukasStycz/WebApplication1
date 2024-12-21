@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data.Context;
 using WebApplication1.Domain.Models;
 
+//Class responsible for database interaction.
 namespace WebApplication1.Data.Logic
 {
     public class ToDoRepository(ToDoDbContext dbContext)
@@ -22,6 +19,7 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         } 
+
         public async Task<ToDo?> GetToDoByIdAsync(int id)
         {
             try
@@ -33,6 +31,7 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         }
+
         public async Task<List<ToDo>> GetToDoByTitleAsync(string title)
         {
             try
@@ -46,6 +45,7 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         }   
+
         public async Task<List<ToDo>> GetToDoFromOneDayAsync(DateTime? date)
         {
             try
@@ -59,6 +59,7 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         } 
+
         public async Task<List<ToDo>> GetToDoFromWeekAsync(Tuple<DateTime,DateTime> week)
         {
             try
@@ -71,7 +72,8 @@ namespace WebApplication1.Data.Logic
             {
                 throw;
             }
-        }                      
+        }   
+
         public async Task<ToDo> InsertToDoAsync(ToDo toDo)
         {
             try
@@ -85,6 +87,7 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         }
+
         public async Task<ToDo?> UpdateToDoAsync(ToDo toDo)
         {
             try
@@ -109,7 +112,8 @@ namespace WebApplication1.Data.Logic
             {
                 throw;
             }
-        }        
+        }   
+
         public async Task<ToDo?> UpdateToDoPrecentageAsync(int id, int percentage)
         {
             try
@@ -132,6 +136,7 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         }  
+
         public async Task<bool> DeleteToDoByIdAsync(int id)
         {
             try
@@ -154,5 +159,6 @@ namespace WebApplication1.Data.Logic
                 throw;
             }
         }
+        
     }
 }
