@@ -8,7 +8,7 @@ namespace WebApplication1.Data.Logic
     public class ToDoRepository(ToDoDbContext dbContext)
     {
         private readonly ToDoDbContext _dbContext = dbContext; 
-        public async Task<List<ToDo>> GstAllToDosAsync()
+        public async Task<List<ToDo>> GetAllToDosAsync()
         {
             try
             {

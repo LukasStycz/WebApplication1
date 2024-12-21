@@ -168,7 +168,7 @@ app.MapGet("/ToDo/Get", async (ToDoRepository repository) =>
 {
     try
     {
-        var toDos = await repository.GstAllToDosAsync();
+        var toDos = await repository.GetAllToDosAsync();
         return Results.Ok(toDos.Count == 0 ? ToDoConstantValues.NoAvailbleTask : toDos);
     }
     catch (Exception ex)
